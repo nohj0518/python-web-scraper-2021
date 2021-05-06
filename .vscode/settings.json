@@ -1,0 +1,7 @@
+{
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "python.formatting.provider": "black",
+    "python.linting.enabled": true,
+    "python.pythonPath": "C:\\Users\\okok7\\AppData\\Local\\Programs\\Python\\Python39\\python.exe"
+}
