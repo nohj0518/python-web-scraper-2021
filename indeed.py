@@ -31,15 +31,22 @@ def extract_job(html):
     else:
         company = str(company.string)
     company = company.strip()
-
     location = html.find("div", {"class": "recJobLoc"})["data-rc-loc"]
-    print(location)
-    return {"title": title, "company": company, "location": location}
+    # div에 접근하고 [data-rc-loc]라는 attribute에 접근한 것
+    job_id = html["data-jk"]
+
+    return {
+        "title": title,
+        "company": company,
+        "location": location,
+        "link": f"https://www.indeed.com/viewjob?jk={job_id}&from=serp&vjs=3",
+    }
 
 
 def extract_indeed_jobs(last_page):
     jobs = []
     for page in range(last_page):
+        print(f"Scrapping page {page}.")
         result = requests.get(f"{URL}&start={page*LIMIT}")
         soup = BeautifulSoup(result.text, "html.parser")
         results = soup.find_all("div", {"class": "jobsearch-SerpJobCard"})
